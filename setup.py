@@ -13,6 +13,8 @@ setup(
     packages=find_packages(),
     zip_safe=True,
     install_requires=[
-        'torch'
+        'torch',
+        'pandas',
+        'sklearn-pandas'
     ]
 )
