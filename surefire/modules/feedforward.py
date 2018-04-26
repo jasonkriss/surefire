@@ -9,10 +9,10 @@ class Feedforward(Module):
         self._combine = Combine(features)
         self._sequential = Sequential()
         num_in = self._combine.out_features
-        for num_out in layers:
-            self._sequential.append(LinearBlock(num_in, num_out, activation))
+        for idx, num_out in enumerate(layers):
+            self._sequential.add_module(str(idx), LinearBlock(num_in, num_out, activation))
             num_in = num_out
-        self._sequential.append(Linear(num_in, out_features))
+        self._sequential.add_module('final', Linear(num_in, out_features))
         
     def forward(self, x):
         return self._sequential(self._combine(x))
