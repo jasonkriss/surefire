@@ -2,10 +2,11 @@ import torch
 from torch.nn import Module, ReLU, ModuleList, Linear
 
 from surefire.modules import Combine, LinearBlock
+from surefire.utils import init_all_weights_
 
 
 class ConcatNet(Module):
-    def __init__(self, features, out_features, layers=[], activation=ReLU):
+    def __init__(self, features, out_features, layers=[], activation='relu'):
         super().__init__()
         self._combine = Combine(features)
         self._blocks = ModuleList()
@@ -16,6 +17,7 @@ class ConcatNet(Module):
             in_features += num_out
             num_in = num_out
         self._final = Linear(in_features, out_features)
+        init_all_weights_(self, activation)
         
     def forward(self, x):
         features = [self._combine(x)]
