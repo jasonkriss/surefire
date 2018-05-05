@@ -6,14 +6,14 @@ from surefire.utils import init_all_weights_
 
 
 class ConcatNet(Module):
-    def __init__(self, features, out_features, layers=[], activation='relu'):
+    def __init__(self, features, out_features, layers=[], activation='relu', normalization=None, dropout=None):
         super().__init__()
         self._combine = Combine(features)
         self._blocks = ModuleList()
         num_in = self._combine.out_features
         in_features = num_in
         for num_out in layers:
-            self._blocks.append(LinearBlock(num_in, num_out, activation))
+            self._blocks.append(LinearBlock(num_in, num_out, activation, normalization=normalization, dropout=dropout))
             in_features += num_out
             num_in = num_out
         self._final = Linear(in_features, out_features)
