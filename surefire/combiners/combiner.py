@@ -1,5 +1,6 @@
 from torch.nn import Module
 
+
 class Combiner(Module):
     @property
     def out_features(self):
