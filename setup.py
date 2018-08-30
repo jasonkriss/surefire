@@ -8,13 +8,11 @@ setup(
     author='Jason Kriss',
     author_email='jasonkriss@gmail.com',
     url='https://github.com/jasonkriss/surefire',
-    description='PyTorch models for structured data',
+    description='PyTorch models for heterogeneous inputs',
     license='MIT',
     packages=find_packages(),
     zip_safe=True,
     install_requires=[
-        'torch',
-        'pandas',
-        'sklearn-pandas'
+        'torch'
     ]
 )
