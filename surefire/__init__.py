@@ -2,12 +2,22 @@ import torch
 from torch.nn import Module, ModuleDict
 
 
+class EncoderDict(ModuleDict):
+    @property
+    def out_features(self):
+        return sum((encoder.out_features for encoder in self.values()))
+
+
+class DecoderDict(ModuleDict):
+    pass
+
+
 class ECD(Module):
     def __init__(self, encoders, combiner, decoders):
         super().__init__()
-        self._encoders = ModuleDict(encoders)
+        self._encoders = encoders
         self._combiner = combiner
-        self._decoders = ModuleDict(decoders)
+        self._decoders = decoders
 
     def forward(self, x):
         encodings = [self._encoders[key](value) for key, value in x.items()]
