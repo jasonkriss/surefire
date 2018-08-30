@@ -1,2 +1,2 @@
 from surefire.combiners.combiner import Combiner
-from surefire.combiners.feedforward import Feedforward
+from surefire.combiners.feedforward import FeedforwardCombiner

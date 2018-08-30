@@ -14,7 +14,7 @@ class _LinearBlock(Module):
         return self._sequential(x)
 
 
-class Feedforward(Combiner):
+class FeedforwardCombiner(Combiner):
     def __init__(self, layers, dropout=None):
         super().__init__()
         self._layers = layers
