@@ -22,4 +22,4 @@ class ECD(Module):
     def forward(self, x):
         encodings = [self._encoders[key](value) for key, value in x.items()]
         features = self._combiner(torch.cat(encodings, dim=1))
-        return {key: decoder(features) for key, decoder in self._decoders}
+        return {key: decoder(features) for key, decoder in self._decoders.items()}
