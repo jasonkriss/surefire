@@ -20,7 +20,7 @@ class FeedforwardCombiner(Combiner):
         self._layers = layers
         self._sequential = Sequential()
         in_features = layers[0]
-        for idx, out_features in enumerate(layers):
+        for idx, out_features in enumerate(layers[1:]):
             self._sequential.add_module(str(idx), _LinearBlock(in_features, out_features, dropout=dropout))
             in_features = out_features
         
