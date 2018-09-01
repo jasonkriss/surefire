@@ -12,6 +12,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     zip_safe=True,
+    test_suite='tests',
     install_requires=[
         'torch'
     ]
