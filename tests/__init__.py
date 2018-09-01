@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 import torch
+
 from surefire import EncoderDict, DecoderDict, ECD
 from surefire.encoders import IdentityEncoder
 from surefire.combiners import IdentityCombiner
