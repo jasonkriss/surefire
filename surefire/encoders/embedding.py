@@ -9,7 +9,7 @@ class EmbeddingEncoder(Encoder):
         self._embedding = Embedding(*args, **kwargs)
         
     def forward(self, x):
-        return self._embedding(x).squeeze()
+        return self._embedding(x).squeeze(-2)
 
     def num_features(self):
         return self._embedding.embedding_dim
