@@ -6,7 +6,7 @@ from surefire.encoders import Encoder
 
 
 def _max_over_time_pool(input):
-    return max_pool1d(input, input.shape[-1]).squeeze()
+    return max_pool1d(input, input.shape[-1]).squeeze(-1)
 
 
 class KimEncoder(Encoder):
