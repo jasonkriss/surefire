@@ -18,20 +18,24 @@ _RECORDS = [{
 
 class TestDataset(TestCase):
     def test_len(self):
-        dataset = Dataset(_RECORDS)
+        dataset = Dataset(_RECORDS, ['featurea'], ['targeta'])
         self.assertEqual(len(dataset), 2)
 
     def test_without_transforms(self):
-        dataset = Dataset(_RECORDS)
+        dataset = Dataset(_RECORDS, ['featurea'], ['targeta'])
         features, targets = dataset[0]
+        self.assertEqual(set(features.keys()), set(['featurea']))
+        self.assertEqual(set(targets.keys()), set(['targeta']))
         self.assertEqual(features['featurea'], 1)
         self.assertEqual(targets['targeta'], 3)
 
     def test_with_transforms(self):
-        dataset = Dataset(_RECORDS, transforms={
+        dataset = Dataset(_RECORDS, ['featurea'], ['targeta'], transforms={
             'featurea': lambda v: v + 1,
             'targeta': lambda v: v + 2
         })
         features, targets = dataset[0]
+        self.assertEqual(set(features.keys()), set(['featurea']))
+        self.assertEqual(set(targets.keys()), set(['targeta']))
         self.assertEqual(features['featurea'], 2)
         self.assertEqual(targets['targeta'], 5)
