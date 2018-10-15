@@ -9,6 +9,7 @@ class BatchNormEncoder(Encoder):
         self._batch_norm = BatchNorm1d(1, **kwargs)
         
     def forward(self, x):
+        x = x.unsqueeze(1) if x.dim() == 1 else x
         return self._batch_norm(x)
 
     def num_features(self):
