@@ -5,7 +5,7 @@ from torch.nn import Module, ModuleDict
 class EncoderDict(ModuleDict):
     @property
     def out_features(self):
-        return sum((encoder.out_features for encoder in self.values()))
+        return sum([encoder.out_features for encoder in self.values()])
 
 
 class DecoderDict(ModuleDict):
