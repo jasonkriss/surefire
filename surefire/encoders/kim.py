@@ -14,11 +14,11 @@ class KimEncoder(Encoder):
         super().__init__()
         self._embedding = Embedding(num_embeddings, embedding_dim, padding_idx=0)
         self._convs = ModuleList([Conv1d(embedding_dim, num_features, kernel_size) for kernel_size in kernel_sizes])
-    
+
     def forward(self, x):
         embedded = torch.transpose(self._embedding(x), 1, 2)
         features = torch.cat([_max_over_time_pool(conv(embedded)) for conv in self._convs], dim=1)
         return relu(features)
 
     def num_features(self):
-        return sum((conv.out_channels for conv in self._convs))
+        return sum([conv.out_channels for conv in self._convs])
